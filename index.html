@@ -4,7 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="app.css" />
+    <title>MP3</title>
   </head>
-  <body></body>
+  <body>
+    <div class="music">
+      <h3 class="music__next--song">
+        Next - <strong class="music__song--title">Rockstar</strong>
+      </h3>
+      <div class="music__image">
+        <img src="https://source.unsplash.com/random" alt="" />
+      </div>
+      <h2 class="music__title">Soint - Tropez</h2>
+      <h3 class="music__author">Post Malone</h3>
+      <input type="range" class="range" name="range" />
+      <div class="music__timmer">
+        <div class="music__timmer--duration">2:10</div>
+        <div class="music__timmer--remaing">-03:56</div>
+      </div>
+      <div class="music__function">
+        <i class="fas fa-backward music__function--backward"></i>
+        <div class="music__function--play">
+          <i class="fas fa-play music__play"></i>
+        </div>
+        <i class="fas fa-forward music__function--forward"></i>
+      </div>
+    </div>
+  </body>
 </html>

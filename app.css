@@ -127,3 +127,145 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.music {
+  width: 500px;
+  padding: 30px 25px 30px 25px;
+  margin: 50px auto 0 auto;
+  border-radius: 12px;
+
+  background-color: #fff;
+  box-shadow: 0 0 10px 10px #ccc;
+}
+
+.music__next--song {
+  margin-bottom: 20px;
+
+  text-align: right;
+
+  color: #ccc;
+}
+
+.music__song--title {
+  font-weight: bold;
+
+  color: #000;
+}
+
+.music__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.music__image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  box-shadow: 0 0 10px 5px #ccc;
+
+  object-fit: cover;
+}
+
+.music__title {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.music__author {
+  color: #ccc;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.music__timmer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.music__function {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+}
+
+.music__function--play {
+  position: relative;
+}
+
+.music__function--play::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: #f2994a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #f2994a,
+    #f2c94c
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #f2994a,
+    #f2c94c
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  transform: scale(1.25);
+  border-radius: 100%;
+
+  z-index: 1;
+}
+
+.music__play {
+  position: relative;
+
+  padding: 15px;
+  border-radius: 100%;
+  background-color: #fff;
+  font-size: 14px;
+
+  z-index: 2;
+}
+
+.music__function--backward,
+.music__play,
+.music__function--forward {
+  cursor: pointer;
+}
+
+.range {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+  margin-bottom: 20px;
+}
+.range::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  background-color: #eeee;
+}
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #20e3b2;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  margin-top: -6px;
+  box-shadow: 0 0 0 3px white, 0 0 0 6px rgba(100, 100, 111, 0.05);
+}
