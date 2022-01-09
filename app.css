@@ -181,6 +181,10 @@ body {
   object-fit: cover;
 }
 
+.music__image .playing {
+  animation: spinner 5s infinite linear;
+}
+
 .music__title {
   font-weight: bold;
   text-align: center;
@@ -268,4 +272,13 @@ body {
   border-radius: 100%;
   margin-top: -6px;
   box-shadow: 0 0 0 3px white, 0 0 0 6px rgba(100, 100, 111, 0.05);
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
