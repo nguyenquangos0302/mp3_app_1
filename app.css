@@ -249,7 +249,8 @@ body {
 
 .music__function--backward,
 .music__play,
-.music__function--forward {
+.music__function--forward,
+.music__function--special {
   cursor: pointer;
 }
 

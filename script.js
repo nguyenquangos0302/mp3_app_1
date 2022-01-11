@@ -11,6 +11,9 @@ const musicTimmerDurationElm = document.querySelector(
 );
 const musicTimmerRemaing = document.querySelector(".music__timmer--remaing");
 const rangeBar = document.querySelector(".range");
+const musicFunctionSpecialElm = document.querySelector(
+  ".music__function--special"
+);
 
 const listMusic = [
   {
@@ -38,7 +41,11 @@ const listMusic = [
 
 let isPlaying = false;
 
-let isRepeat = false;
+// countFunctionSpecial = 0 -> next
+// countFunctionSpecial = 1 -> random
+// countFunctionSpecial = 2 -> next + repeat
+// countFunctionSpecial = 3 -> repeat
+let countFunctionSpecial = 0;
 
 let indexSong = 0;
 
@@ -85,6 +92,11 @@ const changeSong = (dir) => {
   playSong(isPlaying);
 };
 
+const changeSongRandom = (song) => {
+  setSongCurrent(song);
+  playSong(isPlaying);
+};
+
 const formatTimmer = (time) => {
   const minutes = Math.floor(time / 60);
   const seconds = Math.floor(time - minutes * 60);
@@ -103,6 +115,32 @@ const displayTimmer = (songElm) => {
   } else {
     musicTimmerDurationElm.innerHTML = formatTimmer(duration - currentTime);
   }
+};
+
+const handlerSongNext = (dir) => {
+  changeSong(dir);
+};
+
+const randomSong = (indexSongCurrent) => {
+  let index = Math.floor(Math.random() * listMusic.length);
+  while (index === indexSongCurrent) {
+    index = Math.floor(Math.random() * listMusic.length);
+  }
+  return index;
+};
+
+const handlerSongRandom = () => {
+  const randomIndex = randomSong(indexSong);
+  indexSong = randomIndex;
+  changeSongRandom(indexSong);
+};
+
+const handlerSongRepeatAndLoop = (dir) => {
+  changeSong(dir);
+};
+
+const handlerSongRepeat = () => {
+  changeSong(indexSong);
 };
 
 playBtnElm.addEventListener("click", (event) => {
@@ -134,9 +172,50 @@ song.addEventListener("loadedmetadata", (event) => {
 song.addEventListener("ended", (event) => {
   event.preventDefault();
 
-  if (isRepeat) {
-  } else {
-    changeSong(1);
+  switch (countFunctionSpecial) {
+    case 0:
+      if (indexSong === listMusic.length - 1) {
+        isPlaying = !isPlaying;
+        playSong(isPlaying);
+        break;
+      }
+      handlerSongNext(1);
+      break;
+    case 1:
+      handlerSongRandom();
+      break;
+    case 2:
+      handlerSongRepeatAndLoop(1);
+      break;
+    case 3:
+      handlerSongRepeat();
+      break;
+  }
+});
+
+musicFunctionSpecialElm.addEventListener("click", (event) => {
+  event.preventDefault();
+  musicFunctionSpecialElm.classList.remove("fa-long-arrow-alt-right");
+  musicFunctionSpecialElm.classList.remove("fa-random");
+  musicFunctionSpecialElm.classList.remove("fa-redo-alt");
+  musicFunctionSpecialElm.classList.remove("fa-retweet");
+  switch (countFunctionSpecial) {
+    case 0:
+      musicFunctionSpecialElm.classList.add("fa-random");
+      break;
+    case 1:
+      musicFunctionSpecialElm.classList.add("fa-redo-alt");
+      break;
+    case 2:
+      musicFunctionSpecialElm.classList.add("fa-retweet");
+      break;
+    case 3:
+      musicFunctionSpecialElm.classList.add("fa-long-arrow-alt-right");
+      break;
+  }
+  countFunctionSpecial++;
+  if (countFunctionSpecial > 3) {
+    countFunctionSpecial = 0;
   }
 });
 
