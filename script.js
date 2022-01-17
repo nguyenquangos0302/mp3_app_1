@@ -139,8 +139,10 @@ const handlerSongRepeatAndLoop = (dir) => {
   changeSong(dir);
 };
 
-const handlerSongRepeat = () => {
-  changeSong(indexSong);
+const handlerSongRepeat = (indexSong) => {
+  setSongCurrent(indexSong);
+  isPlaying = true;
+  playSong(isPlaying);
 };
 
 playBtnElm.addEventListener("click", (event) => {
@@ -188,7 +190,7 @@ song.addEventListener("ended", (event) => {
       handlerSongRepeatAndLoop(1);
       break;
     case 3:
-      handlerSongRepeat();
+      handlerSongRepeat(indexSong);
       break;
   }
 });
